@@ -1,24 +1,23 @@
 import { Component } from '@angular/core';
+import { Keg } from './keg';
 
 @Component({
   selector: 'app-root',
   template: `
   <div class="container">
     <h1>Kombucha on Tap</h1>
+      <h3 *ngFor="let currentKeg of kegs">Name: {{currentKeg.name}}
+
+      <ul>
+        <li>Brand: {{currentKeg.brand}}</li>
+        <li>Price: {{currentKeg.price}}.00</li>
+        <li>Flavor: {{currentKeg.flavor}}</li>
+      </ul>
+      </h3>
   </div>
     `
   })
 
 export class AppComponent {
-  kegs: Keg[] =  [
-    new Keg('Rosie', 'Kevita Masterbrew Kombucha', 4, 'rose'),
-    new Keg('Cloud Nine', 'Unity Vibration', 3, 'grapefruit'),
-    new Keg('Desert Delight', 'Beyond Brewing Company', 5, 'moroccan mint')
-  ];
 
-}
-
-export class Keg {
-  public empty: boolean = false;
-  constructor(public name: string, public brand: string, public price: number, public flavor: string) { }
 }
