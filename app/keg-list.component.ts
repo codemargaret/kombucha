@@ -13,7 +13,8 @@ import { Keg } from './keg.model';
         <li>Flavor: {{currentKeg.flavor}}</li>
         <li>Pints Left: {{currentKeg.pints}}</li>
         <button class="btn btn-info" (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button>
-        <button class="btn btn-info" (click)="currentKeg.sellPint()">Pour!</button>
+        <button class="btn btn-info" (click)="currentKeg.sellPint()" (click)="currentKeg.isEmpty()">Pour!</button>
+
       </ul>
       </li>
     </ul>
@@ -30,7 +31,5 @@ export class KegListComponent {
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
   }
-
-
 
 }
