@@ -4,13 +4,16 @@ import { Keg } from './keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <ul>
-    <li>Brand: {{currentKeg.brand}}</li>
-    <li>Price: {{currentKeg.price}}.00</li>
-    <li>Flavor: {{currentKeg.flavor}}</li>
-  </ul>
+
     <ul>
-      <li *ngFor="let currentKeg of childKegList"> Name: {{currentKeg.name}}</li>
+      <li *ngFor="let currentKeg of childKegList"> Name: {{currentKeg.name}}
+      <ul>
+        <li>Brand: {{currentKeg.brand}}</li>
+        <li>Price: {{currentKeg.price}}.00</li>
+        <li>Flavor: {{currentKeg.flavor}}</li>
+        <button class="btn btn-info" (click)="editButtonHasBeenClicked(currentKeg)">Edit!</button>
+      </ul>
+      </li>
     </ul>
   `
 })
@@ -21,6 +24,10 @@ export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
 
+
+  editButtonHasBeenClicked(kegToEdit: Keg) {
+    this.clickSender.emit(kegToEdit);
+  }
 
 
 
