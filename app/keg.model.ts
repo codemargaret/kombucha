@@ -10,7 +10,6 @@ export class Keg {
   isEmpty() {
     if (this.pints <= 10) {
       this.empty = true;
-      alert("This keg is empty!");
     }
   }
 }
