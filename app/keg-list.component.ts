@@ -10,7 +10,7 @@ import { Keg } from './keg.model';
       <option value="emptyKegs" selected="selected">Empty Kegs</option>
     </select>
     <ul>
-      <li *ngFor="let currentKeg of childKegList | emptiness:filterByEmptiness"> Name: {{currentKeg.name}}
+      <li [class]="priceColor(currentKeg)" *ngFor="let currentKeg of childKegList | emptiness:filterByEmptiness"> Name: {{currentKeg.name}}
       <ul>
         <li>Brand: {{currentKeg.brand}}</li>
         <li>Price: {{currentKeg.price}}.00</li>
@@ -31,13 +31,21 @@ export class KegListComponent {
   @Input() childKegList: Keg[];
   @Output() clickSender = new EventEmitter();
 
-
   editButtonHasBeenClicked(kegToEdit: Keg) {
     this.clickSender.emit(kegToEdit);
   }
 
   onChange(optionFromMenu) {
     this.filterByEmptiness = optionFromMenu;
-  }
+}
 
+priceColor(currentKeg){
+    if (currentKeg.price === 4){
+      return "bg-danger";
+    } else if (currentKeg.price === 5) {
+      return  "bg-warning";
+    } else {
+      return "bg-info";
+    }
+  }
 }
